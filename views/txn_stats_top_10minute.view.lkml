@@ -7,22 +7,26 @@ view: txn_stats_top_10minute {
   measure: avg_bytes {
     type: average
     sql: ${TABLE}.avg_bytes ;;
+    value_format: "0.00"
   }
 
   measure: avg_commit_latency_seconds {
     type: average
     sql: ${TABLE}.avg_commit_latency_seconds ;;
+    value_format: "0.00"
     drill_fields: [txn_stats_top_10minute__write_constructive_columns.write_constructive_columns,txn_stats_top_10minute__read_columns.read_columns]
   }
 
   measure: avg_participants {
     type: average
     sql: ${TABLE}.avg_participants ;;
+    value_format: "0.00"
   }
 
   measure: avg_total_latency_seconds {
     type: average
     sql: ${TABLE}.avg_total_latency_seconds ;;
+    value_format: "0.00"
   }
 
   measure: commit_abort_count {
