@@ -6,7 +6,7 @@
   elements:
   - title: Total Query Execution vs Failed Execution
     name: Total Query Execution vs Failed Execution
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: looker_column
     fields: [QueryStats_Minute_Interval.interval_end_hour, QueryStats_Minute_Interval.count,
@@ -65,15 +65,13 @@
     column_group_spacing_ratio: 0
     defaults_version: 1
     refresh: 2 minutes
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 3
     col: 0
     width: 24
     height: 8
   - title: Top 10 Failed Queries
     name: Top 10 Failed Queries
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: looker_grid
     fields: [QueryStats_Minute_Interval.text, QueryStats_Minute_Interval.failed_execution_count]
@@ -135,15 +133,13 @@
     defaults_version: 1
     series_types: {}
     refresh: 2 minutes
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 17
     col: 0
     width: 24
     height: 6
   - title: Top 10 Slow Queries
     name: Top 10 Slow Queries
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: looker_grid
     fields: [QueryStats_Minute_Interval.text, QueryStats_Minute_Interval.avg_latency_seconds]
@@ -202,15 +198,13 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 23
     col: 0
     width: 24
     height: 6
   - title: Top CPU Consuming Queries
     name: Top CPU Consuming Queries
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: looker_grid
     fields: [QueryStats_Minute_Interval.text, QueryStats_Minute_Interval.avg_cpu_seconds]
@@ -269,15 +263,13 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 29
     col: 0
     width: 24
     height: 6
   - title: New Tile
     name: New Tile
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: single_value
     fields: [QueryStats_Minute_Interval.avg_bytes]
@@ -353,15 +345,13 @@
     show_null_points: true
     hidden_fields: []
     hidden_points_if_no: []
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 0
     col: 12
     width: 4
     height: 3
   - title: New Tile
     name: New Tile (2)
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: single_value
     fields: [QueryStats_Minute_Interval.avg_cpu_seconds]
@@ -437,15 +427,13 @@
     show_null_points: true
     hidden_fields: []
     hidden_points_if_no: []
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 0
     col: 20
     width: 4
     height: 3
   - title: New Tile
     name: New Tile (3)
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: single_value
     fields: [QueryStats_Minute_Interval.avg_latency_seconds]
@@ -521,15 +509,13 @@
     show_null_points: true
     hidden_fields: []
     hidden_points_if_no: []
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 0
     col: 16
     width: 4
     height: 3
   - title: New Tile
     name: New Tile (4)
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: single_value
     fields: [QueryStats_Minute_Interval.failed_execution_count]
@@ -606,15 +592,13 @@
     show_null_points: true
     hidden_fields: []
     hidden_points_if_no: []
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 0
     col: 4
     width: 4
     height: 3
   - title: New Tile
     name: New Tile (5)
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: single_value
     fields: [QueryStats_Minute_Interval.count]
@@ -691,15 +675,13 @@
     show_null_points: true
     hidden_fields: []
     hidden_points_if_no: []
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 0
     col: 0
     width: 4
     height: 3
   - title: New Tile
     name: New Tile (6)
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: single_value
     fields: [QueryStats_Minute_Interval.cancelled_or_disconnected_execution_count]
@@ -775,15 +757,13 @@
     show_null_points: true
     hidden_fields: []
     hidden_points_if_no: []
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 0
     col: 8
     width: 4
     height: 3
   - title: Recent Locks in 10 Minutes Window
     name: Recent Locks in 10 Minutes Window
-    model: spanner
+    model: spanner_monitoring
     explore: lock_stats_top_10_minute
     type: looker_grid
     fields: [lock_stats_top_10_minute.interval_end_time, lock_stats_top_10_minute.row_range_start_key,
@@ -817,15 +797,13 @@
         is_active: false
     series_types: {}
     defaults_version: 1
-    listen:
-      Interval End Time: lock_stats_top_10_minute.interval_end_time
     row: 35
     col: 0
     width: 13
     height: 9
   - title: Top Locks
     name: Top Locks
-    model: spanner
+    model: spanner_monitoring
     explore: lock_stats_top_10_minute
     type: looker_grid
     fields: [lock_stats_top_10_minute.row_range_start_key, lock_stats_top_10_minute.lock_wait_seconds]
@@ -857,15 +835,13 @@
         is_active: false
     series_types: {}
     defaults_version: 1
-    listen:
-      Interval End Time: lock_stats_top_10_minute.interval_end_date
     row: 35
     col: 13
     width: 11
     height: 9
   - title: Recent Query Stats
     name: Recent Query Stats
-    model: spanner
+    model: spanner_monitoring
     explore: QueryStats_Minute_Interval
     type: looker_grid
     fields: [QueryStats_Minute_Interval.interval_end_time, QueryStats_Minute_Interval.count,
@@ -897,9 +873,22 @@
         is_active: false
     series_types: {}
     defaults_version: 1
-    listen:
-      Interval End Time: QueryStats_Minute_Interval.interval_end_time
     row: 11
     col: 0
     width: 24
     height: 6
+  filters:
+    - name: Interval End Time
+      title: Interval End Time
+      type: field_filter
+      default_value: 24 hour
+      allow_multiple_values: true
+      required: false
+      ui_config:
+      type: advanced
+      display: popover
+      options: []
+      model: spanner
+      explore: QueryStats_Minute_Interval
+      listens_to_filters: []
+      field: QueryStats_Minute_Interval.interval_end_time
