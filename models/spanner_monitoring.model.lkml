@@ -2,6 +2,7 @@ connection: "dream11_spanner_database"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/**/*.dashboard"
 
 datagroup: spanner_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
