@@ -21,6 +21,15 @@ view: QueryStats_Minute_Interval {
     value_format: "0.00"
   }
 
+  dimension: average_cpu_seconds_tier {
+    type: tier
+    tiers: [0.1,0.2,0.3,0.45,0.6,0.75,1]
+    style: relational
+    label: "Average CPU Seconds Tier"
+    sql: ${TABLE}.avg_cpu_seconds ;;
+    value_format: "0.00"
+  }
+
   dimension: average_latency_seconds {
     type: number
     label: "Average Latency Seconds"
@@ -28,32 +37,41 @@ view: QueryStats_Minute_Interval {
     value_format: "0.00"
   }
 
+  dimension: average_latency_seconds_tier {
+    type: tier
+    tiers: [0.1,0.2,0.3,0.45,0.6,0.75,1]
+    style: relational
+    label: "Average Latency Seconds Tier"
+    sql: ${TABLE}.avg_latency_seconds ;;
+    value_format: "0.00"
+  }
+
   measure: avg_cpu_seconds {
-    type: number
+    type: average
     label: "Average CPU Seconds"
-    sql: SUM(${TABLE}.avg_cpu_seconds)/SUM(${TABLE}.execution_count) ;;
+    sql: ${TABLE}.avg_cpu_seconds ;;
     value_format: "0.00"
   }
 
   measure: avg_latency_seconds {
-    type: number
+    type: average
     label: "Average Latency Seconds"
-    sql: SUM(${TABLE}.avg_latency_seconds)/SUM(${TABLE}.execution_count) ;;
+    sql: ${TABLE}.avg_latency_seconds ;;
     value_format: "0.00"
     drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
   }
 
   measure: avg_rows {
-    type: number
+    type: average
     label: "Average Rows"
-    sql: SUM(${TABLE}.avg_rows)/SUM(${TABLE}.execution_count) ;;
+    sql: ${TABLE}.avg_rows ;;
     value_format: "0.00"
   }
 
   measure: avg_rows_scanned {
-    type: number
+    type: average
     label: "Average Rows Scanned"
-    sql: SUM(${TABLE}.avg_rows_scanned)/SUM(${TABLE}.execution_count) ;;
+    sql: ${TABLE}.avg_rows_scanned ;;
     value_format: "0.00"
   }
 
@@ -72,6 +90,7 @@ view: QueryStats_Minute_Interval {
     timeframes: [
       raw,
       time,
+      minute3,
       hour,
       date,
       week,

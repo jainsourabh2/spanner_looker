@@ -3,6 +3,8 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   refresh: 1 minute
+  embed_style:
+    background_color: "#000000"
   elements:
   - title: Total Query Execution vs Failed Execution
     name: Total Query Execution vs Failed Execution
