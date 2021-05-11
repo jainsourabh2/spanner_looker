@@ -903,18 +903,3 @@
     col: 0
     width: 24
     height: 6
-  filters:
-  - name: Interval End Time
-    title: Interval End Time
-    type: field_filter
-    default_value: 24 hour
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: advanced
-      display: popover
-      options: []
-    model: spanner
-    explore: QueryStats_Minute_Interval
-    listens_to_filters: []
-    field: QueryStats_Minute_Interval.interval_end_time
