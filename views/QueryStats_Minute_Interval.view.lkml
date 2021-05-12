@@ -129,7 +129,7 @@ view: QueryStats_Minute_Interval {
 
   measure: avg_rows {
     type: average
-    label: "Average Rows"
+    label: "Average Rows Returned"
     sql: ${TABLE}.avg_rows ;;
     value_format: "0.00"
   }
