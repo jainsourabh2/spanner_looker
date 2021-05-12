@@ -4,6 +4,11 @@ view: txn_stats_top_10minute {
   sql_table_name: `dr-poc-305406.spanner_sys.txn_stats_top_10minute`
     ;;
 
+  dimension: end_time {
+    type: date_time
+    sql: ${TABLE}.interval_end_time ;;
+  }
+
   measure: avg_bytes {
     type: average
     sql: ${TABLE}.avg_bytes ;;
@@ -44,10 +49,10 @@ view: txn_stats_top_10minute {
     sql: ${TABLE}.commit_failed_precondition_count ;;
   }
 
-  measure: total_operations {
-    type: count
-    sql: ${TABLE}.fprint ;;
-  }
+  # measure: total_operations {
+  #   type: count
+  #   sql: ${TABLE}.fprint ;;
+  # }
 
   dimension: fprint {
     type: number

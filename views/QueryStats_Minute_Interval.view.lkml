@@ -104,6 +104,11 @@ view: QueryStats_Minute_Interval {
   dimension: text {
     type: string
     sql: ${TABLE}.text ;;
+    action: {
+      label: "Fetch Query Plan"
+      url: "https://example.com/ping/{{ value }}"
+      form_url: "https://example.com/ping/{{ value }}/form.json"
+    }
   }
 
   dimension: text_fingerprint {
