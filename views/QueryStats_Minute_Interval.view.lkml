@@ -122,7 +122,7 @@ view: QueryStats_Minute_Interval {
 
   measure: avg_all_failed_average_latency_seconds {
     type: number
-    label: "Average Latency Seconds"
+    label: "Average All failed Average Latency Seconds"
     sql: ${TABLE}.all_failed_avg_latency_seconds  ;;
     value_format: "0.00"
   }
