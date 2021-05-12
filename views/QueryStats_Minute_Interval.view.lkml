@@ -59,65 +59,72 @@ view: QueryStats_Minute_Interval {
     label: "Average Latency Seconds"
     sql: ${TABLE}.avg_latency_seconds ;;
     value_format: "0.00"
-    #drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
+    drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
 
-    drill_fields: [avg_latency_seconds, interval_end_time, all_failed_avg_latency_seconds]
+    # drill_fields: [avg_latency_seconds, interval_end_time, all_failed_avg_latency_seconds]
 
-    #html: {{ rendered_value }} || {{ percent_of_total_gm._rendered_value }} of total>> ;;  ## here we use || to concatenate the values
+    # #html: {{ rendered_value }} || {{ percent_of_total_gm._rendered_value }} of total>> ;;  ## here we use || to concatenate the values
 
-    link: {
-      label: "Drill into {{ text }} "
-      #% assign vis_config = '@vis_config_for_avg_latency' %}
-      #/explore/d11-spanner-monitoring/query_stats_top_minute?fields=query_stats_top_minute.avg_latency_seconds,query_stats_top_minute.interval_end_time,query_stats_top_minute.all_failed_avg_latency_seconds&f[query_stats_top_minute.text]={{ text | url_encode}}&vis_config={{ vis_config | encode_uri }}&sorts=query_stats_top_minute.interval_end_time desc&limit=500&query_timezone=UTC"}
-      url: "
-      {% assign vis_config = '{
+    # link: {
+    #   label: "Drill into {{ text }} "
+    #   #% assign vis_config = '@vis_config_for_avg_latency' %}
+    #   #/explore/d11-spanner-monitoring/query_stats_top_minute?fields=query_stats_top_minute.avg_latency_seconds,query_stats_top_minute.interval_end_time,query_stats_top_minute.all_failed_avg_latency_seconds&f[query_stats_top_minute.text]={{ text | url_encode}}&vis_config={{ vis_config | encode_uri }}&sorts=query_stats_top_minute.interval_end_time desc&limit=500&query_timezone=UTC"}
+    #   url: "
+    #   {% assign vis_config = '{
 
-      \"x_axis_gridlines\":true,
-      \"y_axis_gridlines\":true,
-      \"show_view_names\":false,
-      \"show_y_axis_labels\":true,
-      \"show_y_axis_ticks\":true,
-      \"y_axis_tick_density\":\"default\",
-      \"y_axis_tick_density_custom\":5,
-      \"show_x_axis_label\":false,
-      \"show_x_axis_ticks\":true,
-      \"y_axis_scale_mode\":\"linear\",
-      \"x_axis_reversed\":false,
-      \"y_axis_reversed\":false,
-      \"plot_size_by_field\":false,
-      \"trellis\":\"\",
-      \"stacking\":\"\",
-      \"limit_displayed_rows\":false,
-      \"legend_position\":\"center\",
-      \"point_style\":\"circle\",
-      \"show_value_labels\":false,
-      \"label_density\":25,
-      \"x_axis_scale\":\"auto\",
-      \"y_axis_combined\":true,
-      \"show_null_points\":true,
-      \"size_by_field\":\"query_stats_top_minute.all_failed_avg_latency_seconds\",
-      \"ordering\":\"none\",
-      \"show_sql_query_menu_options\":false,
-      \"show_totals\":true,\"show_row_totals\":true,
-      \"show_null_labels\":false,
-      \"show_totals_labels\":false,
-      \"show_silhouette\":false,
-      \"totals_color\":\"#808080\",
-      \"type\":\"looker_scatter\",
-      \"interpolation\":\"linear\",
-      \"series_types\":{},\"colors\":[\"palette: Santa Cruz\"],
-      \"series_colors\":{},
-      \"x_axis_datetime_tick_count\":null,
-      \"trend_lines\":[{\"color\":\"#000000\",
-      \"label_position\":\"left\",\"period\":30,
-      \"regression_type\":\"average\",
-      \"series_index\":1,
-      \"show_label\":true,
-      \"label_type\":\"string\",
-      \"label\":\" \",\"defaults_version\":1}],
-      \"defaults_version\":1
-      }' %}
-    {{ link }}&vis_config={{ vis_config | encode_uri }}"}
+    #   \"x_axis_gridlines\":true,
+    #   \"y_axis_gridlines\":true,
+    #   \"show_view_names\":false,
+    #   \"show_y_axis_labels\":true,
+    #   \"show_y_axis_ticks\":true,
+    #   \"y_axis_tick_density\":\"default\",
+    #   \"y_axis_tick_density_custom\":5,
+    #   \"show_x_axis_label\":false,
+    #   \"show_x_axis_ticks\":true,
+    #   \"y_axis_scale_mode\":\"linear\",
+    #   \"x_axis_reversed\":false,
+    #   \"y_axis_reversed\":false,
+    #   \"plot_size_by_field\":false,
+    #   \"trellis\":\"\",
+    #   \"stacking\":\"\",
+    #   \"limit_displayed_rows\":false,
+    #   \"legend_position\":\"center\",
+    #   \"point_style\":\"circle\",
+    #   \"show_value_labels\":false,
+    #   \"label_density\":25,
+    #   \"x_axis_scale\":\"auto\",
+    #   \"y_axis_combined\":true,
+    #   \"show_null_points\":true,
+    #   \"size_by_field\":\"query_stats_top_minute.all_failed_avg_latency_seconds\",
+    #   \"ordering\":\"none\",
+    #   \"show_sql_query_menu_options\":false,
+    #   \"show_totals\":true,\"show_row_totals\":true,
+    #   \"show_null_labels\":false,
+    #   \"show_totals_labels\":false,
+    #   \"show_silhouette\":false,
+    #   \"totals_color\":\"#808080\",
+    #   \"type\":\"looker_scatter\",
+    #   \"interpolation\":\"linear\",
+    #   \"series_types\":{},\"colors\":[\"palette: Santa Cruz\"],
+    #   \"series_colors\":{},
+    #   \"x_axis_datetime_tick_count\":null,
+    #   \"trend_lines\":[{\"color\":\"#000000\",
+    #   \"label_position\":\"left\",\"period\":30,
+    #   \"regression_type\":\"average\",
+    #   \"series_index\":1,
+    #   \"show_label\":true,
+    #   \"label_type\":\"string\",
+    #   \"label\":\" \",\"defaults_version\":1}],
+    #   \"defaults_version\":1
+    #   }' %}
+    # {{ link }}&vis_config={{ vis_config | encode_uri }}"}
+  }
+
+  measure: avg_all_failed_average_latency_seconds {
+    type: number
+    label: "Average Latency Seconds"
+    sql: ${TABLE}.all_failed_avg_latency_seconds  ;;
+    value_format: "0.00"
   }
 
   measure: avg_rows {
