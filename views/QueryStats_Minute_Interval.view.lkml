@@ -217,7 +217,7 @@ view: QueryStats_Minute_Interval {
     label: "Failed Execution Percentage"
     sql: SUM(${TABLE}.all_failed_execution_count)/SUM(${TABLE}.execution_count)*100 ;;
     drill_fields: []
-    value_format: "0.00"
+    value_format: "0.00%"
   }
 
   measure: total_records {
