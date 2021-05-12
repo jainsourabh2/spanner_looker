@@ -29,6 +29,7 @@ persist_with: spanner_default_datagroup
 #     sql_on: ${avs_data_all.content_id}=${ga_sessions_hits.content_id} ;;
 #   }
 # }
+explore: spanner_parameters {}
 
 explore: QueryStats_Minute_Interval {}
 
