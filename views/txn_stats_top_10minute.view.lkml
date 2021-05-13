@@ -1,8 +1,19 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 
 view: txn_stats_top_10minute {
-  sql_table_name: `dr-poc-305406.spanner_sys.txn_stats_top_10minute`
-    ;;
+  # sql_table_name: `dr-poc-305406.spanner_sys.txn_stats_top_10minute`
+  #   ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        GENERATE_UUID() as uuid, *
+      FROM `dr-poc-305406.spanner_sys.txn_stats_top_10minute`
+
+      ;;
+    }
+
+  dimension: uuid {primary_key:yes}
 
   dimension: end_time {
     type: date_time
