@@ -31,6 +31,12 @@ view: spanner_parameters {
     type:  number
     sql:  MAX(${keyvalue}) OVER (ORDER BY ${end_time} DESC) ;;
     drill_fields: [end_time,keyvalue]
+    link: {
+      label: "Drill as scatter plot"
+      url: "
+      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    }
   }
 
   measure: spanner_node {
