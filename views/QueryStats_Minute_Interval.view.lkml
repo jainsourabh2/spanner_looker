@@ -35,9 +35,34 @@ view: QueryStats_Minute_Interval {
     label: "Average Latency Seconds"
     sql: ${TABLE}.avg_latency_seconds ;;
     value_format: "0.00"
-    drill_fields: [avg_latency_seconds, interval_end_time, all_failed_avg_latency_seconds]
+  }
 
-    #html: {{ rendered_value }} || {{ percent_of_total_gm._rendered_value }} of total>> ;;  ## here we use || to concatenate the values
+  dimension: average_latency_seconds_tier {
+    type: tier
+    tiers: [0.1,0.2,0.3,0.45,0.6,0.75,1]
+    style: relational
+    label: "Average Latency Seconds Tier"
+    sql: ${TABLE}.avg_latency_seconds ;;
+    value_format: "0.00"
+  }
+
+  measure: avg_cpu_seconds {
+    type: average
+    label: "Average CPU Seconds"
+    sql: ${TABLE}.avg_cpu_seconds ;;
+    value_format: "0.00"
+  }
+
+  measure: avg_latency_seconds {
+    type: average
+    label: "Average Latency Seconds"
+    sql: ${TABLE}.avg_latency_seconds ;;
+    value_format: "0.00"
+    drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
+
+    # drill_fields: [avg_latency_seconds, interval_end_time, all_failed_avg_latency_seconds]
+
+    # #html: {{ rendered_value }} || {{ percent_of_total_gm._rendered_value }} of total>> ;;  ## here we use || to concatenate the values
 
     # link: {
     #   label: "Drill into {{ text }} "
@@ -94,33 +119,16 @@ view: QueryStats_Minute_Interval {
     # {{ link }}&vis_config={{ vis_config | encode_uri }}"}
   }
 
-  dimension: average_latency_seconds_tier {
-    type: tier
-    tiers: [0.1,0.2,0.3,0.45,0.6,0.75,1]
-    style: relational
-    label: "Average Latency Seconds Tier"
-    sql: ${TABLE}.avg_latency_seconds ;;
-    value_format: "0.00"
-  }
-
-  measure: avg_cpu_seconds {
+  measure: avg_all_failed_average_latency_seconds {
     type: average
-    label: "Average CPU Seconds"
-    sql: ${TABLE}.avg_cpu_seconds ;;
+    label: "Average All failed Average Latency Seconds"
+    sql: ${TABLE}.all_failed_avg_latency_seconds ;;
     value_format: "0.00"
-  }
-
-  measure: avg_latency_seconds {
-    type: average
-    label: "Average Latency Seconds"
-    sql: ${TABLE}.avg_latency_seconds ;;
-    value_format: "0.00"
-    drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
   }
 
   measure: avg_rows {
     type: average
-    label: "Average Rows"
+    label: "Average Rows Returned"
     sql: ${TABLE}.avg_rows ;;
     value_format: "0.00"
   }
@@ -211,7 +219,7 @@ view: QueryStats_Minute_Interval {
     label: "Failed Execution Percentage"
     sql: SUM(${TABLE}.all_failed_execution_count)/SUM(${TABLE}.execution_count)*100 ;;
     drill_fields: []
-    value_format: "0.00"
+    value_format: "0.00%"
   }
 
   measure: total_records {

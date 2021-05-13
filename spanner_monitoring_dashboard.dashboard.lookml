@@ -1,7 +1,7 @@
 - dashboard: query_statistics_analysis
   title: Query Statistics Analysis
   layout: newspaper
-  preferred_viewer: dashboards-next
+  preferred_viewer: dashboards
   refresh: 1 minute
   embed_style:
     background_color: "#000000"
