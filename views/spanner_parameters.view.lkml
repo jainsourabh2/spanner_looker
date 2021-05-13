@@ -101,7 +101,7 @@ view: spanner_parameters {
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
@@ -113,19 +113,19 @@ view: spanner_parameters {
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
 
   measure: avg_bytes_used {
     type: average
-    sql: ${TABLE}.keyvalue/1024/1024 ;;
+    sql: ${TABLE}.keyvalue/1024/1024/1024 ;;
     drill_fields: [end_time,total_attribute]
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
@@ -137,7 +137,7 @@ view: spanner_parameters {
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
@@ -149,7 +149,7 @@ view: spanner_parameters {
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
@@ -161,24 +161,24 @@ view: spanner_parameters {
 
   measure: request_read_latencies {
     type: average
-    sql: ${TABLE}.keyvalue ;;
+    sql: ${TABLE}.keyvalue * 1000 ;;
     drill_fields: [end_time,total_attribute]
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
 
   measure: request_write_latencies {
     type: average
-    sql: ${TABLE}.keyvalue ;;
+    sql: ${TABLE}.keyvalue * 1000 ;;
     drill_fields: [end_time,total_attribute]
     link: {
       label: "Analyze Trend"
       url: "
-      {% assign vis_config = '{\"type\": \"looker_scatter\"}' %}
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
