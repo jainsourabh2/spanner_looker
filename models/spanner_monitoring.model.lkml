@@ -31,7 +31,9 @@ persist_with: spanner_default_datagroup
 # }
 explore: spanner_parameters {}
 
-explore: QueryStats_Minute_Interval {}
+explore: QueryStats_Minute_Interval {
+  sql_always_where: NOT( ${QueryStats_Minute_Interval.text} LIKE '%spanner_sys%' );;
+}
 
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: lock_stats_top_10_minute {
