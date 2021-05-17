@@ -1,13 +1,18 @@
-
-
 view: lock_stats_top_10_minute {
-  sql_table_name: `dr-poc-305406.spanner_sys.LOCK_STATS_TOP_10MINUTE`
-    ;;
+  derived_table: {
+    sql:
+      SELECT
+        GENERATE_UUID() as uuid, *
+      FROM `dr-poc-305406.spanner_sys.LOCK_STATS_TOP_10MINUTE`
+
+      ;;
+  }
+
+  dimension: uuid {primary_key:yes}
 
   dimension: end_time {
     type: date_time
-    sql: ${TABLE}.interval_end_time ;;
-    primary_key: yes
+    sql: ${TABLE}.interval_end ;;
   }
 
   dimension_group: interval_end {
