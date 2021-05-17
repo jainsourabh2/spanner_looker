@@ -120,7 +120,7 @@ view: QueryStats_Minute_Interval {
       url: "https://dream11poc.cloud.looker.com/dashboards/7?Text={{ filterable_value | url_encode }}"
       icon_url: "http://google.com/favicon.ico"}
     link: {
-      label: "Analyze Query Plan"
+      label: "Example/Dummy Query Plan"
       url: "https://storage.googleapis.com/spanner_query_plan/a.html"
       icon_url: "https://storage.googleapis.com/spanner_query_plan/download.png"}
   }
