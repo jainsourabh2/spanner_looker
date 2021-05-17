@@ -44,12 +44,6 @@ explore: QueryStats_Minute_Interval {
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: lock_stats_top_10_minute {
 
-  # join: txn_stats_top_10minute {
-  #   view_label: "Txn Stats Top 10 Minutes "
-  #   type: left_outer
-  #   relationship: one_to_many
-  #   sql_on: ${txn_stats_top_10minute.interval_end_time} = ${lock_stats_top_10_minute.end_time} ;;
-  # }
   join: lock_stats_top_10_minute__sample_lock_requests {
     view_label: "Lock Stats Top 10 Minute: Sample Lock Requests"
     sql: LEFT JOIN UNNEST(${lock_stats_top_10_minute.sample_lock_requests}) AS  lock_stats_top_10_minute__sample_lock_requests WITH OFFSET AS lock_stats_top_10_minute_sample_lock_requests_with_offset;;
@@ -63,7 +57,8 @@ explore: txn_stats_top_10minute {
     view_label: "Lock Stats Top 10 Minutes "
     type: left_outer
     relationship: many_to_many
-    sql_on: ${txn_stats_top_10minute.interval_end_time} = ${lock_stats_top_10_minute.end_time} ;;
+    sql: ${txn_stats_top_10minute.interval_end_time} = ${lock_stats_top_10_minute.end_time} ;;
+#    required_joins: [lock_stats_top_10_minute__sample_lock_requests]
   }
 
   join: txn_stats_top_10minute__read_columns {
