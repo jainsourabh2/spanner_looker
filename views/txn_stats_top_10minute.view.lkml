@@ -30,7 +30,11 @@ view: txn_stats_top_10minute {
     type: average
     sql: ${TABLE}.avg_commit_latency_seconds ;;
     value_format: "0.00"
-    drill_fields: [txn_stats_top_10minute__write_constructive_columns.write_constructive_columns,txn_stats_top_10minute__read_columns.read_columns]
+    drill_fields: [fprint,txn_stats_top_10minute__write_constructive_columns.write_constructive_columns,txn_stats_top_10minute__read_columns.read_columns]
+    # link: {
+    #   label: "Analyze This Transaction"
+    #   url: "https://dream11poc.cloud.looker.com/dashboards-next/7?Text={{ value | url_encode }}"
+    #   icon_url: "http://google.com/favicon.ico"}
   }
 
   measure: avg_participants {
@@ -45,14 +49,22 @@ view: txn_stats_top_10minute {
     value_format: "0.00"
   }
 
+  measure: avg_read_latency_seconds {
+    type: average
+    sql: ${TABLE}.avg_total_latency_seconds - ${TABLE}.avg_commit_latency_seconds;;
+    value_format: "0.00"
+  }
+
   measure: commit_abort_count {
     type: sum
     sql: ${TABLE}.commit_abort_count ;;
+    value_format: "0.00,,\" M\""
   }
 
   measure: commit_attempt_count {
     type: sum
     sql: ${TABLE}.commit_attempt_count ;;
+    value_format: "0.00,,\" M\""
   }
 
   measure: commit_failed_precondition_count {
@@ -66,8 +78,8 @@ view: txn_stats_top_10minute {
   # }
 
   dimension: fprint {
-    type: number
-    sql: ${TABLE}.fprint ;;
+    type: string
+    sql: CAST(${TABLE}.fprint as STRING) ;;
   }
 
   dimension_group: interval_end {
