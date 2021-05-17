@@ -183,6 +183,30 @@ view: spanner_parameters {
     }
   }
 
+  measure: 50p_request_read_latencies {
+    type: average
+    sql: ${TABLE}.keyvalue * 1000 ;;
+    drill_fields: [end_time,total_attribute]
+    link: {
+      label: "Analyze Trend"
+      url: "
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
+      {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    }
+  }
+
+  measure: 99p_request_read_latencies {
+    type: average
+    sql: ${TABLE}.keyvalue * 1000 ;;
+    drill_fields: [end_time,total_attribute]
+    link: {
+      label: "Analyze Trend"
+      url: "
+      {% assign vis_config = '{\"type\": \"looker_line\"}' %}
+      {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    }
+  }
+
   measure: count {
     type: count
     drill_fields: [metric_name]
