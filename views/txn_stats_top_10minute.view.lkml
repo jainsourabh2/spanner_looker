@@ -31,10 +31,10 @@ view: txn_stats_top_10minute {
     sql: ${TABLE}.avg_commit_latency_seconds ;;
     value_format: "0.00"
     drill_fields: [fprint,txn_stats_top_10minute__write_constructive_columns.write_constructive_columns,txn_stats_top_10minute__read_columns.read_columns]
-    # link: {
-    #   label: "Analyze This Transaction"
-    #   url: "https://dream11poc.cloud.looker.com/dashboards-next/7?Text={{ value | url_encode }}"
-    #   icon_url: "http://google.com/favicon.ico"}
+    link: {
+      label: "Analyze This Transaction"
+      url: "https://dream11poc.cloud.looker.com/dashboards-next/10?Text={{ value | url_encode }}"
+      icon_url: "http://google.com/favicon.ico"}
   }
 
   measure: avg_participants {
