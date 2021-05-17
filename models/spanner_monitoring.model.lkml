@@ -31,6 +31,12 @@ persist_with: spanner_default_datagroup
 # }
 explore: spanner_parameters {}
 
+explore: active_queries_summary {}
+
+explore: oldest_active_queries {
+  sql_always_where: NOT( ${oldest_active_queries.text} LIKE '%spanner_sys%' );;
+}
+
 explore: QueryStats_Minute_Interval {
   sql_always_where: NOT( ${QueryStats_Minute_Interval.text} LIKE '%spanner_sys%' );;
 }
@@ -52,6 +58,13 @@ explore: lock_stats_top_10_minute {
 }
 
 explore: txn_stats_top_10minute {
+
+  join: lock_stats_top_10_minute {
+    view_label: "Lock Stats Top 10 Minutes "
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${txn_stats_top_10minute.interval_end_time} = ${lock_stats_top_10_minute.end_time} ;;
+  }
 
   join: txn_stats_top_10minute__read_columns {
     view_label: "Txn Stats Top 10minute: Read Columns"

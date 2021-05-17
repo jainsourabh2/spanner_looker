@@ -17,7 +17,7 @@ view: txn_stats_top_10minute {
 
   dimension: end_time {
     type: date_time
-    sql: ${TABLE}.interval_end_time ;;
+    sql: ${TABLE}.interval_end ;;
   }
 
   measure: avg_bytes {
