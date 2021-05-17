@@ -1,6 +1,5 @@
 view: QueryStats_Minute_Interval {
-  sql_table_name: `spanner_sys.query_stats_top_minute`
-    ;;
+  sql_table_name: `spanner_sys.query_stats_top_minute` ;;
 
   # dimension: all_failed_execution_count {
   #   type: number
@@ -118,8 +117,12 @@ view: QueryStats_Minute_Interval {
     # }
     link: {
       label: "Analyze This Query"
-      url: "https://dream11poc.cloud.looker.com/dashboards-next/7?Text={{ value | url_encode }}"
+      url: "https://dream11poc.cloud.looker.com/dashboards/7?Text={{ filterable_value | url_encode }}"
       icon_url: "http://google.com/favicon.ico"}
+    link: {
+      label: "Analyze Query Plan"
+      url: "https://storage.googleapis.com/spanner_query_plan/a.html"
+      icon_url: "https://storage.googleapis.com/spanner_query_plan/download.png"}
   }
 
   dimension: all_failed_avg_latency_seconds {
