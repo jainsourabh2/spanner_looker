@@ -57,7 +57,7 @@ explore: txn_stats_top_10minute {
     view_label: "Lock Stats Top 10 Minutes "
     type: left_outer
     relationship: many_to_many
-    sql: ${txn_stats_top_10minute.interval_end_time} = ${lock_stats_top_10_minute.end_time} ;;
+    sql_on: ${txn_stats_top_10minute.interval_end_time} = ${lock_stats_top_10_minute.end_time} ;;
 #    required_joins: [lock_stats_top_10_minute__sample_lock_requests]
   }
 
