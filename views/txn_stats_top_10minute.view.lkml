@@ -33,7 +33,11 @@ view: txn_stats_top_10minute {
     drill_fields: [fprint,txn_stats_top_10minute__write_constructive_columns.write_constructive_columns,txn_stats_top_10minute__read_columns.read_columns]
     link: {
       label: "Analyze This Transaction"
+# <<<<<<< HEAD
       url: "https://dream11poc.cloud.looker.com/dashboards-next/10?Text={{ value | url_encode }}"
+# =======
+#       url: "https://dream11poc.cloud.looker.com/dashboards-next/7?Text={{ value | url_encode }}"
+# >>>>>>> branch 'master' of https://github.com/jainsourabh2/spanner_looker.git
       icon_url: "http://google.com/favicon.ico"}
   }
 
