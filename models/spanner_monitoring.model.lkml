@@ -61,6 +61,12 @@ explore: txn_stats_top_10minute {
 #    required_joins: [lock_stats_top_10_minute__sample_lock_requests]
   }
 
+  join: lock_stats_top_10_minute__sample_lock_requests {
+    view_label: "Lock Stats Top 10 Minute: Sample Lock Requests"
+    sql: LEFT JOIN UNNEST(${lock_stats_top_10_minute.sample_lock_requests}) AS  lock_stats_top_10_minute__sample_lock_requests WITH OFFSET AS lock_stats_top_10_minute_sample_lock_requests_with_offset;;
+    relationship: one_to_many
+  }
+
   join: txn_stats_top_10minute__read_columns {
     view_label: "Txn Stats Top 10minute: Read Columns"
     sql: LEFT JOIN UNNEST(${txn_stats_top_10minute.read_columns}) as txn_stats_top_10minute__read_columns WITH OFFSET AS txn_stats_top_10minute__read_columns_with_offset;;
